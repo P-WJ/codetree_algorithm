@@ -13,12 +13,12 @@ arr = [0 for _ in range(2 * offset + 1)]
 
 for i in range(n):
     if dir[i] == "L":
-        for j in range(cur - 1, cur - x[i] - 1, -1):
+        for j in range(cur, cur - x[i], -1):
             arr[j] += 1
         cur -= x[i]
 
     elif dir[i] == "R":
-        for j in range(cur, cur + x[i]):
+        for j in range(cur + 1, cur + x[i] + 1):
             arr[j] += 1
         cur += x[i]
 
