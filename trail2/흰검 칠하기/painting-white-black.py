@@ -16,16 +16,22 @@ last = [0 for _ in range(2 * offset + 1)]
 
 for i in range(n):
     if dir[i] == "L":
-        for j in range(cur, cur - x[i], -1):
-            white[j] += 1
-            last[j] = 1
-        cur -= x[i] - 1
+        while x[i] > 0:
+            white[cur] += 1
+            last[cur] = 1
+            x[i] -= 1
+
+            if x[i]:
+                cur -= 1
 
     elif dir[i] == "R":
-        for j in range(cur, cur + x[i]):
-            black[j] += 1
-            last[j] = 2
-        cur += x[i] - 1
+        while x[i] > 0:
+            black[cur] += 1
+            last[cur] = 2
+            x[i] -= 1
+
+            if x[i]:
+                cur += 1
 
 white_cnt = 0
 black_cnt = 0
