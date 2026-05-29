@@ -20,12 +20,12 @@ for k in range(n):
 
     for i in range(y1[k], y2[k]):
         for j in range(x1[k], x2[k]):
-            arr[i][j] += 1
+            arr[i][j] = 1
 
 ans = 0
 for i in range(2 * offset + 1):
     for j in range(2 * offset + 1):
-        if arr[i][j] >= 1:
+        if arr[i][j] == 1:
             ans += 1
 
 print(ans)
