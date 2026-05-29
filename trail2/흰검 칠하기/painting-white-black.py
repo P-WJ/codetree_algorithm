@@ -7,20 +7,21 @@ for num, direction in commands:
     dir.append(direction)
 
 # Please write your code here.
-white = [0] * 200001
-black = [0] * 200001
-last = [0] * 200001
+offset = 100000
 cur = 100000
+
+white = [0 for _ in range(2 * offset + 1)]
+black = [0 for _ in range(2 * offset + 1)]
+last = [0 for _ in range(2 * offset + 1)]
 
 for i in range(n):
     if dir[i] == "L":
-        
         for j in range(cur, cur - x[i], -1):
             white[j] += 1
             last[j] = 1
         cur -= x[i] - 1
 
-    else:
+    elif dir[i] == "R":
         for j in range(cur, cur + x[i]):
             black[j] += 1
             last[j] = 2
@@ -30,7 +31,7 @@ white_cnt = 0
 black_cnt = 0
 gray_cnt = 0
 
-for i in range(200001):
+for i in range(2 * offset + 1):
     if white[i] >= 2 and black[i] >= 2:
         gray_cnt += 1
     
