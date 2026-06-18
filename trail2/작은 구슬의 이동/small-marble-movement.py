@@ -1,37 +1,28 @@
-n, t = map(int, input().split())
-r, c, d = input().split()
-r, c = int(r), int(c)
+n, t = tuple(map(int, input().split()))
+x, y, c_dir = tuple(input().split())
 
-# Please write your code here.
+mapper = {
+    'R' : 0,
+    'D' : 1,
+    'U' : 2,
+    'L' : 3
+}
 
-for i in range(t):
+x, y, move_dir = int(x) - 1, int(y) - 1, mapper[c_dir]
 
-    if d == "D":
-        r += 1
+dx = [0, 1, -1, 0]
+dy = [1, 0, 0, -1]
 
-        if r == n+1:
-            r = n
-            d = "U"
-    
-    elif d == "U":
-        r -= 1
+def in_range(x, y):
+    return 0 <= x and x < n and 0 <= y and y < n
 
-        if r == 0:
-            r = 1
-            d = "D"
-            
-    elif d == "R":
-        c += 1
+for _ in range(t):
+    nx, ny = x + dx[move_dir], y + dy[move_dir]
 
-        if c == n+1:
-            c = n
-            d = "L"
-    
-    elif d == "L":
-        c -= 1
+    if in_range(nx, ny):
+        x, y = nx, ny
 
-        if c == 0:
-            c = 1
-            d = "R"
+    else:
+        move_dir = 3 - move_dir
 
-print(r, c)
+print(x+1, y+1)
