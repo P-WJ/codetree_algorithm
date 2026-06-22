@@ -1,16 +1,15 @@
 import sys
-from itertools import combinations
 
 N, S = map(int, input().split())
 arr = list(map(int, input().split()))
 
 # Please write your code here.
 ans = sys.maxsize
+arr_sum = sum(arr)
 
-comb = list(combinations(arr, N-2))
-
-for i in range(len(comb)):
-    T = sum(comb[i])
-    ans = min(ans, abs(T-S))
+for i in range(N):
+    for j in range(i+1, N):
+        new_sum = arr_sum - arr[i] - arr[j]
+        ans = min(ans, abs(new_sum - S))
 
 print(ans)
