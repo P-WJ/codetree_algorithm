@@ -1,3 +1,5 @@
+import sys
+
 T, a, b = map(int, input().split())
 c = []
 x = []
@@ -10,15 +12,16 @@ for _ in range(T):
 ans = 0
 
 for i in range(a, b+1):
-    s = []
-    n = []
+    s = sys.maxsize
+    n = sys.maxsize
+
     for j in range(T):
         if c[j] == "S":
-            s.append(abs(i-x[j]))
+            s = min(s, abs(i-x[j]))
         else:
-            n.append(abs(i-x[j]))
-
-    if min(s) <= min(n):
+            n = min(n, abs(i-x[j]))
+            
+    if s <= n:
         ans += 1
 
 print(ans)
