@@ -1,14 +1,25 @@
-from collections import Counter
-
 X, Y = map(int, input().split())
 
 # Please write your code here.
-cnt = 0
+ans = 0
 
 for i in range(X, Y+1):
 
-    if len(Counter(str(i))) == 2:
-        if Counter(str(i)).most_common(2)[0][1] == 1 or Counter(str(i)).most_common(2)[1][1] == 1:
-            cnt += 1
+    num = i
+    digit = [0] * 10
+    cnt = len(str(i))
 
-print(cnt)
+    while (num):
+        digit[num % 10] += 1
+        num //= 10
+
+    interesting = False
+
+    for j in range(10):
+        if digit[j] == cnt - 1:
+            interesting = True
+
+    if interesting:
+        ans += 1
+
+print(ans)
