@@ -4,13 +4,21 @@ a, b, c = zip(*moves)
 a, b, c = list(a), list(b), list(c)
 
 # Please write your code here.
-arr = [0, 1, 2, 3]
-ans = [0] * 4
-for i in range(n):
-    tmp = arr[a[i]]
-    arr[a[i]] = arr[b[i]]
-    arr[b[i]] = tmp
+ans = 0
 
-    ans[arr[c[i]]] += 1
+for i in range(1, 4):
 
-print(max(ans))
+    arr = [0] * 4
+    arr[i] = 1
+
+    score = 0
+
+    for j in range(n):
+        arr[a[j]], arr[b[j]] = arr[b[j]], arr[a[j]]
+
+        if arr[c[j]]:
+            score += 1
+
+    ans = max(ans, score)
+
+print(ans)
