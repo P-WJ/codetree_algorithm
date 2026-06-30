@@ -4,13 +4,13 @@ arr = [int(input()) for _ in range(N)]
 # Please write your code here.
 ans = 0
 
-arr.sort()
+for i in range(1, 10001):
+    
+    cnt = 0
+    for x in arr:
+        if i <= x <= i + K:
+            cnt += 1
 
-left = 0
-
-for right in range(N):
-    while arr[right] - arr[left] > K:
-        left += 1
-    ans = max(ans, right - left + 1)
+    ans = max(ans, cnt)
 
 print(ans)
