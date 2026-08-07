@@ -15,11 +15,13 @@ public class Main {
         // Please write your code here.
 
         int ans = 0;
-        int prefix = 0;
 
-        for (int i = 0; i < n; i++) {
-            prefix += a[i] - b[i];
-            ans += prefix;
+        for (int i = 0; i < n-1; i++) {
+            while(a[i] > b[i]) {
+                a[i]--;
+                a[i+1]++;
+                ans++;
+            }
         }
     System.out.println(ans);
     }
