@@ -11,19 +11,19 @@ public class Main {
 
         int ans = 0;
 
-        for (int i = 1; i <= 100; i++) {
+        for (int i = 0; i <= 100; i++) {
 
             int cnt = 0;
             int cntl = 0;
 
             for (int j = 0; j < n; j++) {
-                
                 if (a[j] >= i) {
                     cnt++;
-                } else if (a[j] == i-1) {
+                    
+                } else if (a[j] + 1 >= i){
                     if (cntl < l) {
-                        cnt++;
                         cntl++;
+                        cnt++;
                     }
                 }
             }
