@@ -13,10 +13,11 @@ public class Main {
         int ans = Integer.MAX_VALUE;
 
         for (int l = 0; l <= 10000; l++) {
+            
             int r = l + k;
             int cost = 0;
-
-            for (int x : arr) {
+            
+            for(int x : arr) {
                 if (x < l) {
                     cost += l - x;
                 } else if (x > r) {
@@ -26,7 +27,6 @@ public class Main {
 
             ans = Math.min(ans, cost);
         }
-
         System.out.println(ans);
     }
 }
