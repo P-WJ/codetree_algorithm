@@ -6,15 +6,7 @@ public class Main {
         int b = sc.nextInt();
         int c = sc.nextInt();
         // Please write your code here.
-
-        int ans = 0;
-
-        if (b-a == 1 && c-b == 1) {
-            ans = 0;
-        } else {
-            ans = Math.max(b-a-1, c-b-1);
-        }
-
-        System.out.println(ans);
+    
+        System.out.println(Math.max(b-a-1, c-b-1));
     }
 }
