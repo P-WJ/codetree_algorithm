@@ -1,18 +1,15 @@
 import java.util.*;
-import java.io.*;
 
 public class Main {
-    public static void main(String[] args) throws Exception {
-        
-        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-
-        StringTokenizer st = new StringTokenizer(br.readLine());
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
 
         LinkedList<Character> l = new LinkedList<>();
         
-        int n = Integer.parseInt(st.nextToken());
-        int m = Integer.parseInt(st.nextToken());
-        String s = br.readLine();
+        int n = sc.nextInt();
+        int m = sc.nextInt();
+        String s = sc.next();
+        sc.nextLine();
         
         for (int i = 0; i < n; i++) {
             l.add(s.charAt(i));
@@ -22,7 +19,7 @@ public class Main {
 
 
         for (int i = 0; i < m; i++) {
-            String command = br.readLine();
+            String command = sc.next();
 
             if (command.equals("L")) {
                 if (it.hasPrevious()) {
@@ -43,8 +40,9 @@ public class Main {
                 }
             }
 
-            else if (command.charAt(0) == 'P') {
-                it.add(command.charAt(2));
+            else if (command.equals("P")) {
+                String c = sc.next();
+                it.add(c.charAt(0));
             }            
         }
         
