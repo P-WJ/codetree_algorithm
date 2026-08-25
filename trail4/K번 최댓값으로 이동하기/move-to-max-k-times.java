@@ -11,7 +11,6 @@ public class Main {
         int k = Integer.parseInt(st.nextToken());
 
         int[][] grid = new int[n][n];
-
         for (int i = 0; i < n; i++) {
             st = new StringTokenizer(br.readLine());
             for (int j = 0; j < n; j++) {
@@ -22,12 +21,12 @@ public class Main {
         st = new StringTokenizer(br.readLine());
         int r = Integer.parseInt(st.nextToken()) - 1;
         int c = Integer.parseInt(st.nextToken()) - 1;
-
+        
         int[] dx = {1, -1, 0, 0};
         int[] dy = {0, 0, 1, -1};
 
         for (int move = 0; move < k; move++) {
-            
+
             Queue<int[]> q = new ArrayDeque<>();
             boolean[][] visited = new boolean[n][n];
 
@@ -39,7 +38,7 @@ public class Main {
             int maxY = -1;
 
             while (!q.isEmpty()) {
-
+                
                 int[] cur = q.poll();
                 int x = cur[0];
                 int y = cur[1];
@@ -60,15 +59,15 @@ public class Main {
                         continue;
                     }
 
-                    q.offer(new int[]{nx, ny});
                     visited[nx][ny] = true;
+                    q.offer(new int[]{nx, ny});
 
-                    if (maxValue < grid[nx][ny]) {
+                    if (grid[nx][ny] > maxValue) {
                         maxValue = grid[nx][ny];
                         maxX = nx;
                         maxY = ny;
-                    } else if (maxValue == grid[nx][ny]) {
-                        if (maxX > nx || (maxX == nx && maxY > ny)) {
+                    } else if (grid[nx][ny] == maxValue) {
+                        if (nx < maxX || (nx == maxX && ny < maxY)) {
                             maxX = nx;
                             maxY = ny;
                         }
@@ -84,6 +83,6 @@ public class Main {
             c = maxY;
         }
 
-        System.out.println((r+1) + " " + (c+1));
+        System.out.println((r + 1) + " " + (c + 1));
     }
 }
