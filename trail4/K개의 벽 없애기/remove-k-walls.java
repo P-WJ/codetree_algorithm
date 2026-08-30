@@ -5,27 +5,28 @@ public class Main {
 
     static int n, k;
     static int[][] grid;
-    static int r1, c1, r2, c2;
-    static int ans = Integer.MAX_VALUE;
-
     static List<int[]> selected = new ArrayList<>();
+    
+    static int r1, c1, r2, c2;
 
     static int[] dx = {1, -1, 0, 0};
     static int[] dy = {0, 0, 1, -1};
 
+    static int ans = Integer.MAX_VALUE;
+
     public static void main(String[] args) throws Exception {
-        
+
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         StringTokenizer st = new StringTokenizer(br.readLine());
 
         n = Integer.parseInt(st.nextToken());
         k = Integer.parseInt(st.nextToken());
-        
+
         grid = new int[n][n];
         for (int i = 0; i < n; i++) {
             st = new StringTokenizer(br.readLine());
             for (int j = 0; j < n; j++) {
-                grid[i][j] = Integer.parseInt(st.nextToken());
+                grid[i][j] =  Integer.parseInt(st.nextToken());
             }
         }
 
@@ -45,14 +46,12 @@ public class Main {
         }
     }
 
-    static void select(int start) {
-        
-        if (selected.size() == k) {
-            int result = bfs();
 
-            if (result != -1) {
-                ans = Math.min(ans, result);
-            }
+    static void select(int start) {
+
+        if (selected.size() == k) {
+
+            ans = Math.min(ans, bfs());
             return;
         }
 
@@ -70,17 +69,14 @@ public class Main {
 
             selected.remove(selected.size() - 1);
         }
-
     }
 
+
     static int bfs() {
-        
+
         Queue<int[]> q = new ArrayDeque<>();
         boolean[][] visited = new boolean[n][n];
         int[][] dist = new int[n][n];
-
-        q.offer(new int[]{r1, c1});
-        visited[r1][c1] = true;
 
         for (int i = 0; i < selected.size(); i++) {
             int x = selected.get(i)[0];
@@ -89,16 +85,16 @@ public class Main {
             grid[x][y] = 0;
         }
 
-        int result = -1;
+        q.offer(new int[]{r1, c1});
+        visited[r1][c1] = true;
 
         while (!q.isEmpty()) {
-
+            
             int[] cur = q.poll();
             int x = cur[0];
             int y = cur[1];
 
             if (x == r2 && y == c2) {
-                result = dist[x][y];
                 break;
             }
 
@@ -120,10 +116,9 @@ public class Main {
 
                 dist[nx][ny] = dist[x][y] + 1;
                 visited[nx][ny] = true;
-
                 q.offer(new int[]{nx, ny});
-
             }
+            
         }
 
         for (int i = 0; i < selected.size(); i++) {
@@ -133,6 +128,10 @@ public class Main {
             grid[x][y] = 1;
         }
 
-        return result;
+        if (dist[r2][c2] == 0) {
+            dist[r2][c2] = Integer.MAX_VALUE;
+        }
+
+        return dist[r2][c2];
     }
 }
