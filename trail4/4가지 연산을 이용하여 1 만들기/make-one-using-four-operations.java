@@ -21,6 +21,10 @@ public class Main {
             
             int x = q.poll();
 
+            if (x == 1) {
+                break;
+            }
+
             for (int d = 0; d < 4; d++) {
                 int nx;
                 if (d == 0) {
