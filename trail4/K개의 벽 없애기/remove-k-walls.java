@@ -6,16 +6,15 @@ public class Main {
     static int n, k;
     static int[][] grid;
     static List<int[]> selected = new ArrayList<>();
-    
+
     static int r1, c1, r2, c2;
 
-    static int[] dx = {1, -1, 0, 0};
+    static int[] dx = {1, -1 ,0, 0};
     static int[] dy = {0, 0, 1, -1};
 
     static int ans = Integer.MAX_VALUE;
 
     public static void main(String[] args) throws Exception {
-
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         StringTokenizer st = new StringTokenizer(br.readLine());
 
@@ -26,7 +25,7 @@ public class Main {
         for (int i = 0; i < n; i++) {
             st = new StringTokenizer(br.readLine());
             for (int j = 0; j < n; j++) {
-                grid[i][j] =  Integer.parseInt(st.nextToken());
+                grid[i][j] = Integer.parseInt(st.nextToken());
             }
         }
 
@@ -46,12 +45,14 @@ public class Main {
         }
     }
 
-
     static void select(int start) {
 
         if (selected.size() == k) {
-
-            ans = Math.min(ans, bfs());
+            int result = bfs();
+            if (result != 0) {
+                ans = Math.min(ans, result);
+            }
+            
             return;
         }
 
@@ -70,7 +71,6 @@ public class Main {
             selected.remove(selected.size() - 1);
         }
     }
-
 
     static int bfs() {
 
@@ -118,7 +118,6 @@ public class Main {
                 visited[nx][ny] = true;
                 q.offer(new int[]{nx, ny});
             }
-            
         }
 
         for (int i = 0; i < selected.size(); i++) {
@@ -128,10 +127,7 @@ public class Main {
             grid[x][y] = 1;
         }
 
-        if (dist[r2][c2] == 0) {
-            dist[r2][c2] = Integer.MAX_VALUE;
-        }
-
         return dist[r2][c2];
     }
+    
 }
