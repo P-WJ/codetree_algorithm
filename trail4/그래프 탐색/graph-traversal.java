@@ -4,7 +4,7 @@ import java.util.*;
 public class Main {
 
     static int n, m, ans;
-    static int[][] graph;
+    static List<Integer>[] graph;
     static boolean[] visited;
 
     public static void main(String[] args) throws Exception {
@@ -13,16 +13,21 @@ public class Main {
 
         n = Integer.parseInt(st.nextToken());
         m = Integer.parseInt(st.nextToken());
-        graph = new int[n+1][n+1];
+        
+        graph = new ArrayList[n+1];
         visited = new boolean[n+1];
+
+        for (int i = 1; i <= n; i++) {
+            graph[i] = new ArrayList<>();
+        }
 
         for (int i = 0; i < m; i++) {
             st = new StringTokenizer(br.readLine());
             int a = Integer.parseInt(st.nextToken());
             int b = Integer.parseInt(st.nextToken());
 
-            graph[a][b] = 1;
-            graph[b][a] = 1;
+            graph[a].add(b);
+            graph[b].add(a);
         }
 
         visited[1] = true;
@@ -30,15 +35,14 @@ public class Main {
         dfs(1);
 
         System.out.println(ans);
-        
     }
 
     static void dfs(int vertex) {
         
-        for (int currV = 1; currV <= n; currV++) {
-            if (graph[vertex][currV] == 1 && !visited[currV]) {
-                ans++;
+        for (int currV : graph[vertex]) {
+            if (!visited[currV]) {
                 visited[currV] = true;
+                ans++;
                 dfs(currV);
             }
         }
