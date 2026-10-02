@@ -38,6 +38,7 @@ public class Main {
                 for (int j = 0; j < m; j++) {
 
                     if (grid[i][j] <= k || visited[i][j]) continue;
+                    visited[i][j] = true;
                     dfs(k, i, j);
                     cnt++;
                 }
