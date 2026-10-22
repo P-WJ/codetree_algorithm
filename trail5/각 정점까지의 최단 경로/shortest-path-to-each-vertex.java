@@ -24,9 +24,9 @@ public class Main {
     public static void main(String[] args) throws Exception {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         StringTokenizer st = new StringTokenizer(br.readLine());
-        int n = Integer.parseInt(st.nextToken());
-        int m = Integer.parseInt(st.nextToken());
-        int k = Integer.parseInt(br.readLine());
+        n = Integer.parseInt(st.nextToken());
+        m = Integer.parseInt(st.nextToken());
+        k = Integer.parseInt(br.readLine());
         graph = new ArrayList[n+1];
         dist = new int[n+1];
 
@@ -46,18 +46,18 @@ public class Main {
             graph[v].add(new Edge(u, w));
         }
 
-        dijkstra(k, 0);
+        dijkstra(k);
 
         for (int i = 1; i <= n; i++) {
             System.out.println(dist[i] == Integer.MAX_VALUE ? -1 : dist[i]);
         }
     }
 
-    static void dijkstra(int start, int weight) {
-        
+    static void dijkstra(int start) {
+
         PriorityQueue<Edge> pq = new PriorityQueue<>();
 
-        pq.offer(new Edge(start, weight));
+        pq.offer(new Edge(start, 0));
         dist[start] = 0;
 
         while (!pq.isEmpty()) {
