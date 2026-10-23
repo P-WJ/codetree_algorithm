@@ -5,7 +5,6 @@ public class Main {
     static int n, m, p, q;
     static int[][] matrix;
     static int[] a, b;
-    static boolean[] nums;
 
     public static void main(String[] args) throws Exception {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -18,11 +17,6 @@ public class Main {
         matrix = new int[n+1][n+1];
         a = new int[q];
         b = new int[q];
-        nums = new boolean[n+1];
-
-        for (int i = 1; i <= p; i++) {
-            nums[i] = true;
-        }
 
         for (int i = 1; i <= n; i++) {
             for (int j = 1; j <= n; j++) {
