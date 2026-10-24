@@ -6,6 +6,7 @@ public class Main {
     static int[] arr, queries;
     public static void main(String[] args) throws Exception {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        StringBuilder sb = new StringBuilder();
         StringTokenizer st = new StringTokenizer(br.readLine());
         n = Integer.parseInt(st.nextToken());
         m = Integer.parseInt(st.nextToken());
@@ -20,8 +21,9 @@ public class Main {
         st = new StringTokenizer(br.readLine());
         for (int i = 0; i < m; i++) {
             int x = Integer.parseInt(st.nextToken());
-            System.out.println(lowerBound(x));
+            sb.append(lowerBound(x)).append('\n');
         }
+        System.out.print(sb);
     }
 
     static int lowerBound(int x) {
